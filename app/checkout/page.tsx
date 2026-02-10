@@ -58,7 +58,7 @@ export default function CheckoutPage() {
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild>
-            <Link href="/shop">Continue Shopping</Link>
+            <Link href="/books">Continue Shopping</Link>
           </Button>
           <Button asChild variant="outline">
             <Link href="/">Return to Home</Link>

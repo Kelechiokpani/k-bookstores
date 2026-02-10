@@ -209,7 +209,7 @@ export default function WishlistPage() {
           Save items you love to your wishlist and revisit them anytime.
         </p>
         <Button asChild className="mt-8">
-          <Link href="/shop">Continue Shopping</Link>
+          <Link href="/books">Continue Shopping</Link>
         </Button>
       </div>
     );
@@ -265,7 +265,7 @@ export default function WishlistPage() {
 
       <div className="mt-12 text-center">
         <Button asChild variant="outline">
-          <Link href="/shop">
+          <Link href="/books">
             <ShoppingBag className="h-4 w-4 mr-2" />
             Continue Shopping
           </Link>
