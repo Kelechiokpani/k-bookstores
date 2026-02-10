@@ -76,7 +76,7 @@ export default function Home() {
       />
 
       {/* Features Section */}
-      <section className="py-12 px-8 bg-muted">
+      <section className="py-12  bg-muted">
         <div className="container px-4">
           <motion.div
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
