@@ -76,7 +76,7 @@ export default function Home() {
       />
 
       {/* Features Section */}
-      <section className="py-12 bg-muted">
+      <section className="py-12 px-8 bg-muted">
         <div className="container px-4">
           <motion.div
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
@@ -155,19 +155,17 @@ export default function Home() {
             </Button>
           </motion.div>
 
-          <motion.div
+          <div
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
           >
             {featuredProducts.map((product) => (
-              <motion.div key={product.id} variants={fadeInUp}>
+              <div key={product.id}>
                 <ProductCard product={product} />
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
+
+
         </div>
       </section>
 
