@@ -155,7 +155,7 @@ export default function CartPage() {
 
           <div className="mt-6">
             <Button asChild variant="outline" className="w-full">
-              <Link href="/shop">Continue Shopping</Link>
+              <Link href="/books">Continue Shopping</Link>
             </Button>
           </div>
         </div>
