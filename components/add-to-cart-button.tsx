@@ -1,37 +1,42 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ShoppingCart } from "lucide-react"
-import { useCart } from "@/components/cart-provider"
-import type { Product } from "@/lib/types"
-import { cn } from "@/lib/utils"
+import { useAddToCartMutation } from "@/features/cart/cartApi";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { ShoppingCart } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface AddToCartButtonProps {
-  product: Product
-  quantity?: number
-  className?: string
+  productId: string;
+  stock?: number;
+  className?: string;
 }
 
-export default function AddToCartButton({ product, quantity = 1, className }: AddToCartButtonProps) {
-  const { addToCart } = useCart()
+export default function AddToCartButton({ productId, stock, className }: AddToCartButtonProps) {
+  const [addToCart, { isLoading }] = useAddToCartMutation();
 
-  const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-    })
-  }
+
+  const handleAdd = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      // Ensure we send only the ID string as expected by your cartApi
+      await addToCart({ product: productId, quantity: 1 }).unwrap();
+      toast.success("Added to cart");
+    } catch (err: any) {
+      // This will now show the actual error message from your Express server
+      toast.error(err?.data?.message || "Failed to add to cart");
+    }
+  };
 
   return (
-    <Button
-      onClick={handleAddToCart}
-      className={cn("bg-primary hover:bg-primary/90", className)}
-      disabled={product.stock === 0}
-    >
-      <ShoppingCart className="mr-2 h-4 w-4" />
-      {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
-    </Button>
-  )
+      <Button
+          onClick={handleAdd}
+          disabled={isLoading || stock === 0}
+          className={cn("bg-primary hover:bg-primary/90", className)}
+      >
+        <ShoppingCart className="mr-2 h-4 w-4" />
+        {stock === 0 ? "Out of Stock" : isLoading ? "Adding..." : "Add to Cart"}
+      </Button>
+  );
 }

@@ -12,19 +12,45 @@ import {
   Sparkles,
 } from "lucide-react";
 import ProductCard from "@/components/product-card";
-import { products } from "@/lib/products";
+// import { products } from "@/lib/products";
 import HeroSlider from "@/components/hero-slider";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import {useGetProductsQuery} from "@/features/products/productApi";
 
 export default function Home() {
+  const { data: products = [], isLoading, error } = useGetProductsQuery();
+
+
   const featuredProducts = products;
   const nigerianAuthors = products
-    .filter((p) => p.author === "Chinua Achebe")
+    .filter((p) => p.brand === "Chinua Achebe")
     .slice(0, 4);
   const bestsellerBooks = products
     .filter((p) => p.category === "fiction")
     .slice(0, 4);
+
+
+
+  const productsByBrand = products?.reduce((acc: any, product: any) => {
+    const brandName = product.brand || "Other Authors";
+    if (!acc[brandName]) acc[brandName] = [];
+    acc[brandName].push(product);
+    return acc;
+  }, {});
+
+// 2. Group by Category (e.g., Fiction, Non-Fiction)
+  const productsByCategory = products?.reduce((acc: any, product: any) => {
+    const catName = product.category || "General";
+    if (!acc[catName]) acc[catName] = [];
+    acc[catName].push(product);
+    return acc;
+  }, {});
+
+
+  const brandCollections = products?.slice(0, 4) || [];
+  const categoryCollections = products?.slice(4, 8) || [];
+
 
   // Motion Variants
   const fadeInUp = {
@@ -130,7 +156,7 @@ export default function Home() {
 
       {/* Featured Products */}
       <section className="py-16">
-        <div className="container px-4">
+        <div className="container px-4 max-w-7xl">
           <motion.div
             className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8"
             variants={fadeInUp}
@@ -156,10 +182,10 @@ export default function Home() {
           </motion.div>
 
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6"
           >
             {featuredProducts.map((product) => (
-              <div key={product.id}>
+              <div key={product._id}>
                 <ProductCard product={product} />
               </div>
             ))}
@@ -170,8 +196,8 @@ export default function Home() {
       </section>
 
       {/* Nigerian Authors & Bestsellers */}
-      <section className="py-16 bg-muted">
-        <div className="container px-4">
+      <section className="py-16 bg-muted ">
+        <div className="container px-4 max-w-7xl">
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
             variants={staggerContainer}
@@ -189,15 +215,15 @@ export default function Home() {
                 Celebrate African voices and support local talent
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {nigerianAuthors.map((product) => (
-                  <motion.div key={product.id} variants={fadeInUp}>
-                    <ProductCard product={product} compact />
-                  </motion.div>
+                {brandCollections.map((item: any) => (
+                    <motion.div key={item._id} variants={fadeInUp}>
+                      <ProductCard product={item} />
+                    </motion.div>
                 ))}
               </div>
               <div className="mt-6 text-center">
                 <Button asChild variant="outline">
-                  <Link href="/books">Explore Nigerian Authors</Link>
+                  <Link href="/books">Explore Authors</Link>
                 </Button>
               </div>
             </motion.div>
@@ -212,8 +238,8 @@ export default function Home() {
                 Most loved and highly rated books
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {bestsellerBooks.map((product) => (
-                  <motion.div key={product.id} variants={fadeInUp}>
+                {categoryCollections.map((product) => (
+                  <motion.div key={product._id} variants={fadeInUp}>
                     <ProductCard product={product} compact />
                   </motion.div>
                 ))}

@@ -4,8 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
-import { CartProvider } from "@/components/cart-provider";
-import { WishlistProvider } from "@/components/wishlist-provider";
+import {Providers} from "@/app/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,25 +23,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        {/* <WishlistProvider>
-          <CartProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <Toaster />
-          </CartProvider>
-        </WishlistProvider> */}
+      {/*<CartProvider>*/}
+      {/*  <div className="flex min-h-screen flex-col">*/}
+      {/*    <Header />*/}
+      {/*    <main className="flex-1">{children}</main>*/}
+      {/*    <Footer />*/}
+      {/*  </div>*/}
+      {/*  <Toaster />*/}
+      {/*</CartProvider>*/}
 
-        <CartProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+      <Providers>
+        <div className="flex min-h-screen flex-col">
+          <Header/>
+          <main className="flex-1">{children}</main>
+          <Footer/>
+        </div>
+        <Toaster/>
           <Toaster />
-        </CartProvider>
+      </Providers>
+
+
       </body>
     </html>
   );

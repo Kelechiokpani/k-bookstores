@@ -42,7 +42,7 @@ export default function ProductQuantity({ initialQuantity = 1, maxQuantity, onQu
 
   return (
     <div className="flex items-center">
-      <span className="mr-4 font-medium">Quantity:</span>
+      <span className="mr-4 font-medium text-sm">Quantity:</span>
       <div className="flex items-center">
         <Button
           variant="outline"
@@ -52,7 +52,7 @@ export default function ProductQuantity({ initialQuantity = 1, maxQuantity, onQu
           className="h-9 w-9 rounded-r-none"
         >
           <Minus className="h-4 w-4" />
-          <span className="sr-only">Decrease quantity</span>
+          <span className="sr-only text-sm">Decrease quantity</span>
         </Button>
         <Input
           type="number"

@@ -221,10 +221,10 @@ export default function AboutPage() {
                 key={index}
                 className="bg-white/10 p-6 rounded-lg backdrop-blur-sm"
               >
-                <p className="italic mb-4">"{testimonial.quote}"</p>
+                <p className="italic mb-4 text-white">"{testimonial.quote}"</p>
                 <div>
-                  <p className="font-semibold">{testimonial.author}</p>
-                  <p className="text-sm text-white/80">
+                  <p className="font-semibold text-white">{testimonial.author}</p>
+                  <p className="text-sm text-white">
                     {testimonial.location}
                   </p>
                 </div>

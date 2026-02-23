@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -53,8 +54,34 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #1a1a1a;
+    font-size: 12px;
+
+    h1, h2, h3, h4, h5, .font-serif {
+      /*font-family: 'Playfair Display', serif;*/
+      letter-spacing: -0.02em;
+      font-size: 12px;
+    }
+
+    p {
+      line-height: 1.7;
+      color: #374151; /* Tailwind gray-700 */
+      font-size: 12px;
+    }
+
+    div, span{
+      font-size: 11px;
+    }
 
   }
+
 }
+
+
+

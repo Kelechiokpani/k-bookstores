@@ -1,0 +1,20 @@
+[
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b001" }, "name": "Chimamanda Ngozi Adichie" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b002" }, "name": "Harper Lee" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b003" }, "name": "George Orwell" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b004" }, "name": "F. Scott Fitzgerald" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b005" }, "name": "Jane Austen" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b006" }, "name": "Chinua Achebe" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b007" }, "name": "J.D. Salinger" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b008" }, "name": "Charlotte Brontë" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b009" }, "name": "Emily Brontë" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b010" }, "name": "Gabriel García Márquez" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b011" }, "name": "Miguel de Cervantes" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b012" }, "name": "Fyodor Dostoevsky" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b013" }, "name": "Leo Tolstoy" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b014" }, "name": "Ben Okri" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b015" }, "name": "Toni Morrison" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b016" }, "name": "Paulo Coelho" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b017" }, "name": "Khaled Hosseini" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9b018" }, "name": "Markus Zusak" }
+]

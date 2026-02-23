@@ -1,0 +1,9 @@
+[
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9c001" }, "name": "Fiction" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9c002" }, "name": "Science" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9c003" }, "name": "Romance" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9c004" }, "name": "History" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9c005" }, "name": "Classic" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9c006" }, "name": "Psychology" },
+  { "_id": { "$oid": "65e1a2b3c4d5e6f7a8b9c007" }, "name": "Self-Help" }
+]

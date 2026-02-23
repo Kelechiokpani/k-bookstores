@@ -1,65 +1,66 @@
 "use client";
 
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
-import { useWishlist } from "@/components/wishlist-provider";
-import { products } from "@/lib/products";
-import type { Product } from "@/lib/types";
-import { useCart } from "./cart-provider";
+import { cn } from "@/lib/utils";
+import {
+    useAddToWishlistMutation,
+    useDeleteWishlistMutation,
+    useGetWishlistQuery
+} from "@/features/wishlist/wishlistApi";
 
 interface WishlistButtonProps {
-  productId: string;
-  size?: "sm" | "icon";
-  variant?: "ghost" | "default";
-  className?: string;
-  onChange?: (added: boolean) => void;
+    productId: string;
+    size?: "sm" | "icon" | "default";
+    variant?: "ghost" | "default" | "outline";
+    className?: string;
+    onChange?: (added: boolean) => void;
 }
 
 export default function WishlistButton({
-  productId,
-  size = "sm",
-  variant = "ghost",
-  className,
-  onChange,
-}: WishlistButtonProps) {
-  // const { toggleWishlist, isInWishlist } = useWishlist();
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
+                                           productId,
+                                           size = "sm",
+                                           variant = "ghost",
+                                           className,
+                                           onChange,
+                                       }: WishlistButtonProps) {
+    const [addToWishlist] = useAddToWishlistMutation();
+    const [deleteWishlist] = useDeleteWishlistMutation();
+    const { data: wishlist } = useGetWishlistQuery();
 
-  const product = products.find((p) => p.id === productId) as Product;
 
-  if (!product) {
-    console.warn(`Product with id ${productId} not found!`);
-    return null; // or fallback UI
-  }
+    const wishlistItem = wishlist?.find(item => item.product._id === productId);
+    const isWishlisted = !!wishlistItem;
 
-  const inWishlist = isInWishlist(product.id);
+    const handleClick = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+        if (isWishlisted) {
+            // We need the Wishlist Doc ID to delete, not the Product ID
+            await deleteWishlist(wishlistItem._id).unwrap();
+        } else {
+            await addToWishlist({ product: productId }).unwrap();
+        }
+    };
 
-    // toggleWishlist(productId);
-    isInWishlist(product.id);
-    toggleWishlist(product.id);
-
-    if (onChange) onChange(!inWishlist);
-  };
-
-  return (
-    <Button
-      size={size}
-      variant={variant}
-      className={`${className} p-0 h-8 w-8 flex items-center justify-center`}
-      onClick={handleClick}
-    >
-      <Heart
-        className={`h-5 w-5 transition-colors duration-200 ${
-          inWishlist ? "fill-red-500 text-red-500" : "text-gray-400"
-        }`}
-      />
-      <span className="sr-only">
-        {inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+    return (
+        <Button
+            size={size}
+            variant={variant}
+            className={cn("p-0 h-8 w-8 flex items-center justify-center", className)}
+            onClick={handleClick}
+        >
+            <Heart
+                className={cn(
+                    "h-5 w-5 transition-colors duration-200",
+                    isWishlisted ? "fill-red-500 text-red-500" : "text-gray-400"
+                )}
+            />
+            <span className="sr-only">
+        {isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
       </span>
-    </Button>
-  );
+        </Button>
+    );
 }
