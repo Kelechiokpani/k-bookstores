@@ -63,13 +63,10 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!validate()) return;
-
     try {
       // Data sent matches the User Schema (name, email, password)
       const response = await registerUser(form).unwrap();
-
       dispatch(setCredentials(response));
       toast({
         title: "Success!",

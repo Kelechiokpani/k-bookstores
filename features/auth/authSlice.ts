@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "@/lib/types";
 import { authApi } from "./authApi";
 
+
 interface AuthState {
     user: User | null;
     token: string | null; // Added to fix TS2339
@@ -13,6 +14,7 @@ const initialState: AuthState = {
     token: null, // Initialized as null
     isInitialized: false,
 };
+
 
 const authSlice = createSlice({
     name: "auth",

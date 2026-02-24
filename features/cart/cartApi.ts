@@ -12,7 +12,7 @@ export const cartApi = api.injectEndpoints({
             query: (data) => ({
                 url: "/cart",
                 method: "POST",
-                body: data, // Matches { product: "id", quantity: 1 }
+                body: data,
                 credentials: 'include',
             }),
             invalidatesTags: ["Cart"]

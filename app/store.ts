@@ -27,6 +27,8 @@ export const store = configureStore({
         orders: orderReducer,
         reviews: reviewReducer,
     },
+
+
     // Middleware configuration
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({serializableCheck: false,}).concat(api.middleware)

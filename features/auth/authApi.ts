@@ -9,7 +9,7 @@ export const authApi = api.injectEndpoints({
             query: (data) => ({
                 url: "/auth/signup",
                 method: "POST",
-                body: data
+                body: data,
             })
         }),
 
@@ -17,7 +17,7 @@ export const authApi = api.injectEndpoints({
             query: (data) => ({
                 url: "/auth/login",
                 method: "POST",
-                body: data
+                body: data,
             }),
             // Invalidates User tag to force a fresh fetch of user details on login
             invalidatesTags: ["User"]
@@ -40,7 +40,7 @@ export const authApi = api.injectEndpoints({
         updateProfile: builder.mutation<User, Partial<User>>({
             query: (data) => ({
                 url: "/auth/profile",
-                method: "PATCH", // Using PATCH as it's better for partial updates
+                method: "PATCH",
                 body: data
             }),
             invalidatesTags: ["User"]

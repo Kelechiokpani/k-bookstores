@@ -5,9 +5,8 @@ import type { RootState } from "./store"
 export const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://k-bookstores-backend.onrender.com/",
+        baseUrl: 'https://k-bookstores-backend.onrender.com/',
         // baseUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000",
-        credentials: "include",
         prepareHeaders: (headers, { getState }) => {
             // 1. Get token from Redux state
             const token = (getState() as RootState).auth.token;
@@ -15,12 +14,11 @@ export const api = createApi({
             if (token) {
                 headers.set("authorization", `Bearer ${token}`);
             }
-
             // 3. Ensure JSON is accepted
             headers.set("accept", "application/json");
-
             return headers;
         },
+        credentials: "include",
     }),
     tagTypes: [
         "User", "Products", "Orders", "Cart",
