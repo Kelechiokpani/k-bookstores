@@ -66,6 +66,9 @@ export default function BooksPage() {
 
         return filtered;
     }, [products, categoryParam, sortParam, minParam, maxParam, searchQuery]);
+
+    if (isLoading) return <ProductGridSkeleton />;
+
     return (
         <motion.div
             className="container px-4 py-8 md:py-12 max-w-7xl"
@@ -148,7 +151,7 @@ export default function BooksPage() {
 function ProductGridSkeleton() {
     return (
         <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 m-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
