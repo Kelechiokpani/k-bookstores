@@ -5,15 +5,12 @@ import type { RootState } from "./store"
 export const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000",
-
-        // Standard way to include cookies in every request
+        baseUrl: "https://k-bookstores-backend.onrender.com/",
+        // baseUrl: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000",
         credentials: "include",
-
         prepareHeaders: (headers, { getState }) => {
             // 1. Get token from Redux state
             const token = (getState() as RootState).auth.token;
-
             // 2. If token exists (and you use Bearer auth), set the header
             if (token) {
                 headers.set("authorization", `Bearer ${token}`);
